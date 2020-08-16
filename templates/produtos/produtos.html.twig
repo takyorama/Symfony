@@ -1,7 +1,27 @@
-{% extends './base.html.twig' %}
+{% extends 'produtos/layout.html.twig' %}
+{% block javascripts %}<script src="{{ asset('js/app.js') }}"></script>{% endblock %}
 
-{% block header %}{% endblock %}
+{% block main %}
+  <div class="table-responsive-md w-75 offset-2">
+    <table class="table p-3 table-hover">
+    {% for produto in produtos %}
+      <tr class="row">
+        <td class="col">{{ produto.descricao }}</td>
+        <td class="col">{{ produto.fornecedor }}</td>
+        <td class="col">{{ produto.dta_fabricacao }}</td>
+        <td class="col">{{ produto.dta_validade }}</td>
+        <td class="col">{{ produto.preco }}</td>
+        <td class="col">{{ produto.quantidade }}</td>
+      </tr>
+    {% endfor %}
+  </ul>
+  <div id="app"></div>
+{% endblock %}
 
-{% block sidebar %}{% endblock %}
-
-{% block body %}{% endblock %}
+{% block sidebar %}
+  <ul class="list-unstyled w-25">
+    <li class="list-group-item w-50">
+      <a href="{{ path('produtos_novo') }}" class="btn w-75 offset-3">Novo</a>
+    </li>
+  </ul>
+{% endblock %}

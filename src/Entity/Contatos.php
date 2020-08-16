@@ -13,15 +13,15 @@ class Contatos{
      */
     private $id;
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      */
     private $nome;
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      */
     private $email;
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=15)
      */
     private $telefone;
 

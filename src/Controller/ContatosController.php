@@ -3,38 +3,64 @@
 use App\Entity\Contatos;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @Route("contatos", name="contatos_")
+ */
 class ContatosController extends AbstractController{
     /**
-     * @Route("/contatos", name="contatos")
+     * @Route("/", name="homepage")
      */
     public function index(): Response {
-        $contatos = new Contatos();
-        $repositorio = $this->getDoctrine()->getRepository('App\Entity\Contatos');
+        $repositorio = $this->getDoctrine()->getRepository(Contatos::class);
 
-        //$contatos = $repositorio->findAll();
+        $contatos = $repositorio->findAll();
 
-        return $this->render('contatos/index.html.twig', ['contatos'=>$contatos]);
+        return $this->render('contatos/contatos.html.twig', ['controller_name'=>'ContatosController', 'contatos'=>$contatos]);
     }
     /**
-     * @Route("/contatos/novo", name="novo_contato")
+     * @Route("/novo", name="novo")
      */
-    public function create(){ return $this->render('contatos/novocontato.html.twig',); }
+    public function create(){ return $this->render('contatos/novo.html.twig',); }
     /**
-     * @Route("/contatos/store", name="lista_contatos")
+     * @Route("/store", name="lista")
      */
-    public function store(): Response {}
+    public function store(Request $request): Response {
+        $input = $request->request->all();
+
+        $contato = new Contatos();
+        $contato->setName($input['nome']);
+        $contato->setEmail($input['email']);
+        $contato->setTelephone($input['telefone']);
+
+        $manager = $this->getDoctrine()->getManager();
+        $manager->persist($contato);
+        $manager->flush();
+
+        return $this->redirect('contatos/contatos.html.twig');
+    }
     /**
-     * @Route("contatos/edit/$id", name="edita_contato")
+     * @Route("edit/$id", name="edita")
      */
-    public function edit($id){ return $this->render('editacontato.html.twig', []); }
+    public function edit($id){
+        $repositorio = $this->getDoctrine()->getRepository(Contatos::class);
+        $contato = $repositorio->findOneBy($id);
+
+        return $this->render('edita.html.twig', ['contato'=>$contato]);
+    }
     /**
-     * @Route("contatos/$id/update", name="atualiza_contatos")
+     * @Route("$id/update", name="atualiza")
      */
-    public function update($id): Response { }
+    public function update($id): Response {
+        $repositorio = $this->getDoctrine()->getRepository(Contatos::class);
+        $contato = $repositorio->findOneBy($id);
+
+        return $this->render('edita.html.twig', ['contato'=>$contato]);
+    }
     /**
-     * @Route("contatos/delete/$id", name="deleta_contato")
+     * @Route("delete/$id", name="deleta")
      */
     public function delete($id): Response { }
 }

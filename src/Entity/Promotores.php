@@ -13,15 +13,15 @@ class Promotores{
      */
     private $id;
     /**
-     * @ORM\Column(type="string", length="200")
+     * @ORM\Column(type="string", length=200)
      */
     private $nome;
     /**
-     * @ORM\Column(type="string", length="13")
+     * @ORM\Column(type="string", length=13)
      */
     private $cpf;
     /**
-     * @ORM\Column(type="string", length="200")
+     * @ORM\Column(type="string", length=200)
      */
     private $empresa;
 
@@ -30,8 +30,8 @@ class Promotores{
     public function getCPF(): ?string { return $this->cpf; }
     public function getEnterprise(): ?string{ return $this->empresa; }
 
-    public function setId($id){ $this->id = $id; }
-    public function setName($name){ $this->nome = $name; }
-    public function setCPF($cpf){ $this->cpf = $cpf; }
-    public function setEnterprise($enterprise){ $this->empresa = $enterprise; }
+    public function setId($id): self { $this->id = $id; }
+    public function setName($name): self { $this->nome = $name; }
+    public function setCPF($cpf): self { $this->cpf = $cpf; }
+    public function setEnterprise($enterprise): self { $this->empresa = $enterprise; }
 }

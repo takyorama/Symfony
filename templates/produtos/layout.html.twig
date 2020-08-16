@@ -1,0 +1,29 @@
+{% extends './base.html.twig' %}
+
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/app.css') }}" />{% endblock %}
+
+{% block header %}
+<header>
+  <hgroup>
+    <h2>Orama Sistemas</h2>
+    <h4>Desafio Symfony</h4>
+  </hgroup>
+  <nav>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </nav>
+</header>
+{% endblock %}
+
+{% block body %}
+<aside>
+  {% block sidebar %}{% endblock %}
+</aside>
+<main>
+  {% block main %}{% endblock %}
+</main>
+{% endblock %}

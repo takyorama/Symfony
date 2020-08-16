@@ -4,35 +4,39 @@ use App\Entity\Promotores;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
-
+use Symfony\Component\HttpFoundation\Request;
+/**
+ * @Route("/promotores", name="promotores_")
+ */
 class PromotoresController extends AbstractController{
     /**
-     * @Route("/promotores", name="promotores")
+     * @Route("/", name="homepage")
      */
     public function index(): Response {
         $promotores = new Promotores();
-        $repositorio = $this->getDoctrine()->getRepository('App\Entity\Promotores');
+        $repositorio = $this->getDoctrine()->getRepository(Promotores::class);
+        //$promotores = $repositorio->findAll();
 
-        return $this->render('promotores/index.html.twig', ['promotores'=>$promotores]);
+        return $this->render('promotores/promotores.html.twig', ['controller_name'=>'Promotor', 'promotores'=>$promotores]);
     }
     /**
-     * @Route("/promotores/novo", name="novo_promotor")
+     * @Route("/novo", name="novo")
      */
     public function create(){ return $this->render('promotores/novo.html.twig',); }
     /**
-     * @Route("promotores/store", name="lista_promotores")
+     * @Route("/store", name="lista")
      */
-    public function store(){ return $this->render('promotores/lista.html.twig',); }
+    public function store(Request $request){ return $this->render('promotores/promotores.html.twig',); }
     /**
-     * @Route("promotores/edit/$id", name="edita_promotor")
+     * @Route("/edit/$id", name="edita")
      */
     public function edit($id){ return $this->render('promotores/edita.html.twig', ); }
     /**
-     * @Route("promotores/$id/update", name="atualiza_promotor")
+     * @Route("/$id/update", name="atualiza")
      */
-    public function update($id){}
+    public function update(Request $request, $id){}
     /**
-     * @Route("promotores/delete/$id", name="deleta_promotor")
+     * @Route("/delete/$id", name="deleta")
      */
     public function delete($id){}
 }

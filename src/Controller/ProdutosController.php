@@ -1,54 +1,67 @@
 <?php namespace App\Controller;
 
 use App\Entity\Produtos;
+use App\Form\ProdutosType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
-
+use Symfony\Component\HttpFoundation\Request;
+/**
+ * @Route("/", name="produtos_")
+ */
 class ProdutosController extends AbstractController{
     /**
-     * @Route("/")
+     * @Route("/home", name="homepage")
      */
     public function index(): Response {
-        $produtos = new Produtos();
-        $repositorio = $this->getDoctrine()->getRepository('App\Entity\Produtos');
+        $repositorio = $this->getDoctrine()->getRepository(Produtos::class);
+        $produtos = $repositorio->findAll();
 
-        return $this->render('produtos/index.html.twig', ['produtos'=>$produtos]);
+        return $this->render('produtos/produtos.html.twig', ['controller_name'=>'ProdutosController', 'produtos'=>$produtos]);
     }
     /**
-     * @Route("/produtos/novo", name="novo_produto")
+     * @Route("/", name="novo")
      */
     public function create(): Response {
-        /*
-        $entidadeManager = $this->getDoctrine()->getManager();
         $produto = new Produtos();
-        
-        $produto->setDescription('Tapa-olho');
-        $produto->setPrice(2.50);
-        $produto->setAmount();
+        $form = $this->createForm(ProdutosType::class, $produto);
+        $form->add('enviar', SubmitType::class);
 
-        $entityManager->persist($produto);
-        $entityManager->flush();
-
-        return new Response('{$produto->getDescription()} salvo com sucesso!');
-        */
-        return $this->render('produtos/novoproduto.html.twig', );
+        return $this->render('produtos/novo.html.twig', ['form'=>$form->createView(),]);
     }
     /**
-     * @Route("/produtos/store", name="lista_produtos")
+     * @Route("/lista", name="lista")
      */
-    public function store(){}
+    public function store(Request $request){
+        $produto = $request->request->All();
+
+        $manager = $this->getDoctrine()->getManager();
+
+        //$manager->persist($produto);
+        //$manager->flush();
+
+        $produtos = new Produtos();
+        $repositorio = $this->getDoctrine()->getRepository(Produtos::class);
+        $produtos = $repositorio->findAll();
+
+        return $this->render('produtos/produtos.html.twig', ['produtos'=>$produtos]);
+    }
     /**
-     * @Route("/produtos/edit/$id", name="edita_produto")
+     * @Route("/edit/{id}", name="edita")
      */
     public function edit($id){ return $this->render('produtos/edita.html.twig' ,); }
     /**
-     * @Route("/produtos/$id/update", name="atualiza_produto")
+     * @Route("/{id}/update", name="atualiza")
      */
-    public function update($id){}
+    public function update(Request $request, $id){
+        return $this->redirect('produtos/produtos.html.twig');
+    }
     /**
-     * @Route("/produtos/delete/$id", name="deleta_produto")
+     * @Route("/delete/{id}", name="deleta_produto")
      */
-    public function delete($id){}
+    public function delete($id){
+        return $this->redirect('produtos/produtos.html.twig');
+    }
 }
 ?>

@@ -1,9 +1,6 @@
 {% extends './base.html.twig' %}
 
 {% block header %}
-<header>
- Este é um block grande com uns 250px de altura con uma imagem de um promotor de vendas e
- um navbar
   <div class="nav nav-pills">
     <div class="nav-item"><a href="{{ path('promotores_homepage') }}" class="dropdown-header nav-link">HOME</a></div>
     <div class="nav-item">
@@ -31,13 +28,35 @@
   </nav>
  </header>
 {% endblock %}
+
+{% block sidebar %}{% endblock %}
+
 {% block body %}
 <main id="main">
   <figure class="figure w-100 h-25">
     <img class="figure-img w-100 h-75 d-inline-block" src="{{ asset('images/promotor-de-vendas.png') }}"/>
     <figcaption class="figure-caption">imagem: Cia do trade</figcaption>
   </figure>
-  <div id="app">APP</div>
+  <form action="{{ path('promotores_lista') }}">
+    <div class="form-group row">
+      <label class="col-sm-1 col-form-label" for="nome">Nome:</label>
+      <div class="col-sm-5">
+        <input type="text" name="nome" id="nome" class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-1 col-form-label" for="cpf">CPF:</label>
+      <div class="col-sm-1">
+        <input type="text" name="cpf" id="cpf" class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-1 col-form-label" for="email">Email:</label>
+      <div class="col-sm-5">
+        <input type="text" name="nome" id="email" class="form-control">
+      </div>
+    </div>
+    <button class="btn">Enviar</button>
+  </form>
 </main>
-<script src="{{ asset('js/app.js') }}">app();</script>
 {% endblock %}

@@ -15,7 +15,7 @@
         <a href="#" class="dropdown-item">Novo</a>
       </div>
     </li>
-    <li class="nav-item dropdown active" role="button">
+    <li class="nav-item dropdown" role="button">
       <a href="{{ path('produtos') }}" class="nav-link dropdown-header">Produtos</a>
       <div class="dropdown-menu">
         <a href="{{ path('produtos') }}" class="dropdown-item">Lista</a>
@@ -35,12 +35,19 @@
 </header>
 {% endblock %}
 
-{% block body %}
-<div class="card">
-  <span>Temo aki</span>
-</div>
-{% endblock %}
-
 {% block sidebar %}
 <aside class="nav"></aside>
+{% endblock %}
+
+{% block body %}
+<div>
+  <section>
+  </section>
+
+  <ul class="list-inline">
+    {% for contato in contatos %}
+      <li class=" list-inline-item card">{{ contatos.nome }} {{ contatos.email }} {{ contatos.telefone }} <form action="{{ path('edita_contato') }}"><button type="submit">Editar</button></form></td>
+    {% endfor %}
+  </ul>
+</div>
 {% endblock %}
