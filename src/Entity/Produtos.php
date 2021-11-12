@@ -45,8 +45,8 @@ class Produtos{
     public function getDescricao(): ?string { return $this->descricao; }
     public function getIdFornecedor(): ?string { return $this->id_fornecedor; }
     public function getFornecedor(): ?string { return $this->fornecedor; }
-    public function getDtaFabricacao(): ?string { return $this->dta_fabricacao; }
-    public function getDtaValidade(): ?string { return $this->dta_validade; }
+    public function getdta_fabricacao(): ?string { return $this->dta_fabricacao; }
+    public function getdta_validade(): ?string { return $this->dta_validade; }
     public function getQuantidade(): ?int { return $this->quantidade; }
     public function getPreco(): ?float { return $this->preco; }
 
@@ -54,8 +54,8 @@ class Produtos{
     public function setDescricao($descript){ $this->descricao = $descript; }
     public function setIdFornecedor($id_producer){ $this->id_fornecedor = $id_producer; }
     public function setFornecedor($producer){ $this->fornecedor = $producer; }
-    public function setDtaFabricacao($dta_factory){ $this->dta_fabricacao = $dta_factory;}
-    public function setDtaValidade($dta_validity){ $this->dta_validade = $dta_validity; }
+    public function setdta_fabricacao($dta_factory){ $this->dta_fabricacao = $dta_factory;}
+    public function setdta_alidade($dta_validity){ $this->dta_validade = $dta_validity; }
     public function setQuantidade($amount){ $this->quantidade = $amount; }
     public function setPreco($price){ $this->preco = $price;; }
 }

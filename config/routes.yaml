@@ -2,6 +2,10 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
+takyorama:
+  path: /
+  controller: App\Controller\takyorama::index
+
 contatos:
   path: contatos
   controller: App\Controller\ContatosController::index
@@ -11,6 +15,6 @@ promotores:
     controller: App\Controllers\PromotoresController::index
 
 produtos:
-    path: produtos
+    path: /produtos
     controller: App\Controllers\ProdutosController::index
     

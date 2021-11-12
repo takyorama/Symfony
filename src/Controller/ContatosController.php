@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @Route("contatos", name="contatos_")
+ * @Route("/", name="contatos_")
  */
 class ContatosController extends AbstractController{
     /**
@@ -31,9 +31,9 @@ class ContatosController extends AbstractController{
         $input = $request->request->all();
 
         $contato = new Contatos();
-        $contato->setName($input['nome']);
+        $contato->setNome($input['nome']);
         $contato->setEmail($input['email']);
-        $contato->setTelephone($input['telefone']);
+        $contato->setTelefone($input['telefone']);
 
         $manager = $this->getDoctrine()->getManager();
         $manager->persist($contato);
@@ -42,16 +42,16 @@ class ContatosController extends AbstractController{
         return $this->redirect('contatos/contatos.html.twig');
     }
     /**
-     * @Route("edit/$id", name="edita")
+     * @Route("edit/{id}", name="edita")
      */
     public function edit($id){
         $repositorio = $this->getDoctrine()->getRepository(Contatos::class);
         $contato = $repositorio->findOneBy($id);
 
-        return $this->render('edita.html.twig', ['contato'=>$contato]);
+        return $this->render('./contatos/edita.html.twig', ['contato'=>$contato]);
     }
     /**
-     * @Route("$id/update", name="atualiza")
+     * @Route("{id}/update", name="atualiza")
      */
     public function update($id): Response {
         $repositorio = $this->getDoctrine()->getRepository(Contatos::class);
@@ -60,7 +60,7 @@ class ContatosController extends AbstractController{
         return $this->render('edita.html.twig', ['contato'=>$contato]);
     }
     /**
-     * @Route("delete/$id", name="deleta")
+     * @Route("delete/{id}", name="deleta")
      */
     public function delete($id): Response { }
 }

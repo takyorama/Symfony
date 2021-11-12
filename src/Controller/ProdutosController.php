@@ -8,11 +8,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 /**
- * @Route("/", name="produtos_")
+ * @Route("produtos", name="produtos_")
  */
 class ProdutosController extends AbstractController{
     /**
-     * @Route("/home", name="homepage")
+     * @Route("/", name="homepage")
      */
     public function index(): Response {
         $repositorio = $this->getDoctrine()->getRepository(Produtos::class);
@@ -21,7 +21,7 @@ class ProdutosController extends AbstractController{
         return $this->render('produtos/produtos.html.twig', ['controller_name'=>'ProdutosController', 'produtos'=>$produtos]);
     }
     /**
-     * @Route("/", name="novo")
+     * @Route("/novo", name="novo")
      */
     public function create(): Response {
         $produto = new Produtos();
@@ -64,4 +64,3 @@ class ProdutosController extends AbstractController{
         return $this->redirect('produtos/produtos.html.twig');
     }
 }
-?>

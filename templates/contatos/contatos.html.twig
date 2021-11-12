@@ -1,4 +1,4 @@
-{% extends './base.html.twig' %}
+{% extends './produtos/layout.html.twig' %}
 
 {% block header %}
 <header>
@@ -8,15 +8,15 @@
   </hgroup>
   <ul class="nav nav-tabs">
     <li class="nav-item dropdown active" role="button">
-      <a href="{{ path('contatos') }}" class="nav-link active dropdown-header">Contatos</a>
+      <a href="{{ path('contatos_homepage') }}" class="nav-link active dropdown-header">Contatos</a>
       <div class="dropdown-menu">
-        <a href="{{ path('contatos') }}" class="dropdown-item">Lista</a>
+        <a href="{{ path('contatos_homepage') }}" class="dropdown-item">Lista</a>
         <a href="#" class="dropdown-item">Busca</a>
-        <a href="#" class="dropdown-item">Novo</a>
+        <a href="{{ path('contatos_novo') }}" class="dropdown-item">Novo</a>
       </div>
     </li>
     <li class="nav-item dropdown" role="button">
-      <a href="{{ path('produtos') }}" class="nav-link dropdown-header">Produtos</a>
+      <a href="{{ path('produtos_homepage') }}" class="nav-link dropdown-header">Produtos</a>
       <div class="dropdown-menu">
         <a href="{{ path('produtos') }}" class="dropdown-item">Lista</a>
         <a href="" class="dropdown-item ">Busca</a>
@@ -24,7 +24,7 @@
       </div>
     </li>
     <li class="nav-item dropdown" role="button">
-      <a href="{{ path('promotores') }}" class="nav-link dropdown-header">Promotores</a>
+      <a href="{{ path('promotores_homepage') }}" class="nav-link dropdown-header">Promotores</a>
       <div class="dropdown-menu">
         <a href="" class="dropdown-item">Rotinas</a>
         <a href="" class="dropdown-item">Busca</a>
@@ -35,19 +35,22 @@
 </header>
 {% endblock %}
 
-{% block sidebar %}
-<aside class="nav"></aside>
-{% endblock %}
-
 {% block body %}
-<div>
-  <section>
-  </section>
+      <main class="container-fluid">
+        <div class="row">
+          <aside class="col-3">
+          </aside>
+          <div class="col-8">
+            <div>
+              <h1 class="fs-3">Listagem de contatos</h1>
+            </div>
 
-  <ul class="list-inline">
-    {% for contato in contatos %}
-      <li class=" list-inline-item card">{{ contatos.nome }} {{ contatos.email }} {{ contatos.telefone }} <form action="{{ path('edita_contato') }}"><button type="submit">Editar</button></form></td>
-    {% endfor %}
-  </ul>
-</div>
+            <ul class="list-group py-4">
+            {% for contato in contatos %}
+              <li class="list-group-item">{{ contato.nome }} {{ contato.email }} {{ contato.telefone }} <a href="{{ path('contatos_edita', {id: contato.id}) }}" class="btn btn-secondary">Editar</a></li>
+            {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </main>
 {% endblock %}

@@ -1,29 +1,42 @@
 {% extends './base.html.twig' %}
 
-{% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/app.css') }}" />{% endblock %}
+{% block stylesheets %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous"/>
+{% endblock %}
+{% block javascripts %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+{% endblock %}
+
 
 {% block header %}
 <header>
   <hgroup>
     <h2>Orama Sistemas</h2>
     <h4>Desafio Symfony</h4>
+	<h6 class="fs-6 fst-italic text-danger">listagem de produtos</h6>
   </hgroup>
-  <nav>
-    <ul>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
+  <nav class="navbar">
+    <ul class="nav">
+      <li clas="nav-item"></li>
+      <li clas="nav-item"></li>
+      <li clas="nav-item"></li>
+      <li clas="nav-item"></li>
     </ul>
   </nav>
 </header>
 {% endblock %}
 
 {% block body %}
-<aside>
-  {% block sidebar %}{% endblock %}
-</aside>
-<main>
-  {% block main %}{% endblock %}
-</main>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <aside class="col-3">
+        {% block sidebar %}{% endblock %}
+      </aside>
+      <main class="col-8 table-responsive">
+        {% block main %}{% endblock %}
+      </main>
+    </div>
+  </div>
+</body>
 {% endblock %}

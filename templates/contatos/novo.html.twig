@@ -1,7 +1,96 @@
-{% extends './base.html.twig' %}
+{% extends './produtos/layout.html.twig' %}
 
-{% block header %}{% endblock %}
+{% block header %}
+<header>
+  <hgroup>
+    <h1>Orama Sistemas</h1>
+    <h>Desafio Symfony</h3>
+  </hgroup>
+  <ul class="nav nav-tabs">
+    <li class="nav-item dropdown active" role="button">
+      <a href="{{ path('contatos_homepage') }}" class="nav-link active dropdown-header">Contatos</a>
+      <div class="dropdown-menu">
+        <a href="{{ path('contatos_homepage') }}" class="dropdown-item">Lista</a>
+        <a href="#" class="dropdown-item">Busca</a>
+        <a href="{{ path('contatos_novo') }}" class="dropdown-item">Novo</a>
+      </div>
+    </li>
+    <li class="nav-item dropdown" role="button">
+      <a href="{{ path('produtos_homepage') }}" class="nav-link dropdown-header">Produtos</a>
+      <div class="dropdown-menu">
+        <a href="{{ path('produtos') }}" class="dropdown-item">Lista</a>
+        <a href="" class="dropdown-item ">Busca</a>
+        <a href="" class="dropdown-item ">Novo</a>
+      </div>
+    </li>
+    <li class="nav-item dropdown" role="button">
+      <a href="{{ path('promotores_homepage') }}" class="nav-link dropdown-header">Promotores</a>
+      <div class="dropdown-menu">
+        <a href="" class="dropdown-item">Rotinas</a>
+        <a href="" class="dropdown-item">Busca</a>
+        <a href="" class="dropdown-item">Novo</a>
+      </div>
+    </li>
+  </ul>
+</header>
+{% endblock %}
 
-{% block aside %}{% endblock %}
-
-{% block body %}{% endblock %}
+{% block body %}
+      <main class="container-fluid">
+        <header class="row">
+          <div class="card-group offset-2 col-7">
+            <div class="card">
+              <header class="card-header">
+                <h2 class="fs-3 fst-italic text-center">Cadastro de novo contato</h2>
+                <h6 class="fs-6 text-warning text-center">PREENCHA TODOS OS CAMPOS REQUIRIDOS</h6>
+              </header>
+            </div>
+          </div>
+        </header>
+        <form action="#" name="contato">
+          <div class="row">
+            <div class="form-group">
+              <div class="col-2">
+                <label for="nome" class="col-form-label">Nome:</label>
+              </div>
+              <div class="col-5">
+                <input type="text" class="form-control form-control-sm" placeholder="nome completo" name="nome"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-2">
+                <label for="nome" class="col-form-label">Telefone:</label>
+              </div>
+              <div class="col-5">
+                <input type="text" class="form-control form-control-sm" placeholder="nome completo" name="nome"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-2">
+                <label for="nome" class="col-form-label">Celular:</label>
+              </div>
+              <div class="col-5">
+                <input type="text" class="form-control form-control-sm" placeholder="nome completo" name="nome"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-2">
+                <label for="nome" class="col-form-label">E-mail:</label>
+              </div>
+              <div class="col-5">
+                <input type="text" class="form-control form-control-sm" placeholder="nome completo" name="nome"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-2">
+                <label for="nome" class="col-form-label">Nome:</label>
+              </div>
+              <div class="col-5">
+                <input type="text" class="form-control form-control-sm" placeholder="nome completo" name="nome"/>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-secondary">Salvar</button>
+        </form>
+      </main>
+{% endblock %}

@@ -2,26 +2,31 @@
 {% block javascripts %}<script src="{{ asset('js/app.js') }}"></script>{% endblock %}
 
 {% block main %}
-  <div class="table-responsive-md w-75 offset-2">
-    <table class="table p-3 table-hover">
+    <table class="table table-hover">
+	  <thead>
+	    <tr class="row">
+		    <th class="col-12 bg-secondary">tabela de produtos</th>
+		  </tr>
+	  </thead>
+	  <tbody>
     {% for produto in produtos %}
-      <tr class="row">
-        <td class="col">{{ produto.descricao }}</td>
-        <td class="col">{{ produto.fornecedor }}</td>
-        <td class="col">{{ produto.dta_fabricacao }}</td>
-        <td class="col">{{ produto.dta_validade }}</td>
-        <td class="col">{{ produto.preco }}</td>
-        <td class="col">{{ produto.quantidade }}</td>
-      </tr>
+        <tr class="row">
+          <td class="col-4">{{ produto.descricao }}</td>
+          <td class="col-3">{{ produto.fornecedor }}</td>
+          <td class="col">{{ produto.dta_fabricacao }}</td>
+          <td class="col">{{ produto.dta_validade }}</td>
+          <td class="col-1 text-right">R$ {{ produto.preco }}</td>
+          <td class="col-1 text-right">{{ produto.quantidade }}</td>
+        </tr>
     {% endfor %}
-  </ul>
-  <div id="app"></div>
+	</tbody>
+  </table>
 {% endblock %}
 
 {% block sidebar %}
-  <ul class="list-unstyled w-25">
-    <li class="list-group-item w-50">
-      <a href="{{ path('produtos_novo') }}" class="btn w-75 offset-3">Novo</a>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <a href="{{ path('produtos_novo') }}" class="btn w-100">Novo</a>
     </li>
   </ul>
 {% endblock %}
